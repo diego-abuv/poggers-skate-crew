@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Asfalto Livre — projeto cultural de skate da Poggers Skate Crew. São Paulo, desde 2018." />
+  <title>Asfalto Livre | Poggers Skate Crew</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER / NAV
+  ============================================================ -->
+  <header class="nav" role="banner">
+    <a href="#hero" class="nav__logo" aria-label="Asfalto Livre — início">
+      Asfalto<span class="nav__logo-accent">.</span>Livre
+    </a>
+
+    <nav aria-label="Navegação principal">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#sobre">Sobre</a></li>
+        <li><a class="nav__link" href="#galeria">Galeria</a></li>
+        <li><a class="nav__link" href="#eventos">Eventos</a></li>
+        <li><a class="nav__link" href="#apoio">Apoiar</a></li>
+        <li><a class="nav__link" href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section id="hero" class="hero" aria-label="Apresentação">
+      <div class="hero__bg" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <span class="hero__eyebrow">Monte Belo, MG · Desde 2022</span>
+
+        <h1 class="hero__title">
+          Asfalto<br /><span class="hero__title-accent">Livre</span>
+        </h1>
+
+        <p class="hero__group">Poggers Skate Crew</p>
+        <p class="hero__tagline">A rua é nossa escola. O skate é nossa língua.</p>
+
+        <a class="btn btn--primary hero__cta" href="#sobre">
+          Conheça o coletivo
+        </a>
+      </div>
+
+      <span class="hero__scroll" aria-hidden="true">Scroll</span>
+    </section>
+
+    <!-- ============================================================
+         SOBRE
+    ============================================================ -->
+    <section id="sobre" class="sobre section" aria-labelledby="sobre-titulo">
+      <div class="sobre__grid">
+
+        <div class="sobre__media">
+          <video
+            class="sobre__img"
+            src="../assets/b2b-ollies.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            aria-label="Skatista em manobra urbana"
+          ></video>
+          <div class="sobre__badge" aria-hidden="true">
+            Cerca de
+            <strong class="sobre__badge-number">16</strong>
+            Membros<br />ativos
+          </div>
+        </div>
+
+        <div class="sobre__body">
+          <span class="section__label">Quem somos</span>
+          <h2 id="sobre-titulo" class="section__title">
+            Nossa<br />história
+          </h2>
+          <div class="section__divider" aria-hidden="true"></div>
+
+          <p class="sobre__text">
+            A Poggers Skate Crew nasceu em 2022 em Monte Belo, MG. Começamos
+            andando nos picos que a cidade tinha — a Rodoviária, o
+            Estacionamento da Prefeitura e a Quadrinha — e foi ali que o grupo
+            foi tomando forma.
+          </p>
+          <p class="sobre__text">
+            Com o tempo, a falta de estrutura local nos empurrou pra evoluir
+            fora: passamos a frequentar cidades vizinhas como Muzambinho e
+            Alfenas, onde rolam sessões na Emize Skate Park e na pista de
+            skate local.
+          </p>
+          <p class="sobre__text">
+            Sem obstáculos e sem espaço adequado, a solução foi construir com
+            as próprias mãos. Com esforço próprio e doações, montamos
+            obstáculos que usamos principalmente na Quadrinha. Hoje somos 16
+            membros unidos pela mesma vibe.
+          </p>
+
+          <div class="sobre__missao">
+            <h3 class="sobre__missao-title">Nossa missão</h3>
+            <p>
+              Usar o skate como ferramenta de cultura e transformação em Monte
+              Belo. Queremos visibilidade, investimento e espaço — pra que todo
+              rolo da cidade tenha onde evoluir.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         GALERIA
+    ============================================================ -->
+    <section id="galeria" class="galeria section" aria-labelledby="galeria-titulo">
+
+      <span class="section__label">Momentos</span>
+      <h2 id="galeria-titulo" class="section__title">Galeria</h2>
+      <p class="galeria__intro">
+        Cada foto conta uma queda. Cada queda virou um trick.
+      </p>
+    
+      <div class="carousel" id="carousel">
+        <div class="carousel__track" id="carouselTrack">
+    
+          <figure class="carousel__slide">
+            <img src="../assets/ollie-grab.JPG" alt="Skatista executando trick na rua" loading="lazy">
+            <figcaption class="carousel__caption">Street · Monte Belo, MG</figcaption>
+          </figure>
+    
+          <figure class="carousel__slide">
+            <img src="../assets/rockslide.jpg" alt="Sessão na pista" loading="lazy">
+            <figcaption class="carousel__caption">Sessão · Emize Skate Park, Muzambinho</figcaption>
+          </figure>
+    
+        </div>
+    
+        <div class="carousel__progress" id="carouselProgress"></div>
+        <span class="carousel__counter" id="carouselCounter" aria-live="polite">01 / 05</span>
+    
+        <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Slide anterior">&#8592;</button>
+        <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Próximo slide">&#8594;</button>
+      </div>
+    
+      <div class="carousel__dots" id="carouselDots" role="tablist" aria-label="Navegação da galeria"></div>
+    
+    </section>
+
+    <!-- ============================================================
+         INSTAGRAM
+    ============================================================ -->
+    <section id="instagram" class="instagram section" aria-labelledby="instagram-titulo">
+      <div class="instagram__wrap">
+
+        <div class="instagram__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069
+              1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919
+              4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849
+              0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057
+              1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073
+              7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98
+              6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2
+              6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014
+              15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4
+              4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0
+              000-2.881z"
+            />
+          </svg>
+        </div>
+
+        <span class="section__label">Redes sociais</span>
+        <h2 id="instagram-titulo" class="section__title">Segue a gente</h2>
+        <p class="instagram__sub">
+          Trick, bastidor, encontro e muito caô do dia a dia. Bora fazer essa
+          comunidade crescer!
+        </p>
+        <span class="instagram__handle">@poggers_sk8</span>
+
+        <a
+          class="btn btn--outline"
+          href="https://instagram.com/poggers_sk8"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Seguir no Instagram
+        </a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         EVENTOS
+    ============================================================ -->
+    <section id="eventos" class="eventos section" aria-labelledby="eventos-titulo">
+      <span class="section__label">Agenda</span>
+      <h2 id="eventos-titulo" class="section__title">
+        Eventos &amp;<br />Atividades
+      </h2>
+
+      <ul class="eventos__grid" role="list">
+
+        <li class="evento">
+          <span class="evento__num" aria-hidden="true">01</span>
+          <span class="evento__tag">Mensal · 2° Sáb do mês · 15h</span>
+          <h3 class="evento__title">Reunião - PGRS</h3>
+          <p class="evento__desc">
+            Quadrinha - Praça de Esportes. <br> Encontro aberto ao publico - Tricks, ideias e corre geral.
+          </p>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ============================================================
+         APOIE
+    ============================================================ -->
+    <section id="apoio" class="apoio section" aria-labelledby="apoio-titulo">
+      <div class="apoio__grid">
+
+        <div class="apoio__body">
+          <span class="section__label section__label--dark">Faça parte</span>
+          <h2 id="apoio-titulo" class="section__title section__title--dark">
+            Apoie o<br />Projeto
+          </h2>
+          <div class="section__divider section__divider--dark" aria-hidden="true"></div>
+
+          <p class="apoio__text">
+            O Asfalto Livre funciona na raça, na vontade e no apoio de quem
+            acredita na cultura de rua.
+          </p>
+          <p class="apoio__text">
+            Cada real que entra vira shape, capacete, transporte pra evento ou
+            estrutura pra treino.
+          </p>
+          <p class="apoio__text apoio__text--strong">
+            Você não precisa andar de skate pra fazer parte disso. Só precisa
+            querer ver essa galera evoluir.
+          </p>
+        </div>
+
+        <div class="apoio__options">
+
+          <div class="apoio__card">
+            <h3 class="apoio__card-title">📲 PIX</h3>
+            <p class="apoio__card-desc">Transferência rápida direto pro coletivo.</p>
+            <code class="apoio__pix-key">123.456.789-00</code>
+            <small class="apoio__pix-name">Poggers Skate Crew</small>
+          </div>
+
+          <div class="apoio__card">
+            <h3 class="apoio__card-title">🔗 Vakinha Online</h3>
+            <p class="apoio__card-desc">
+              Meta atual: R$ 3.000 — nova rampa pro espaço comunitário.
+            </p>
+            <a
+              class="btn btn--dark"
+              href="https://vakinha.com.br"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Acessar Vakinha
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CONTATO
+    ============================================================ -->
+    <section id="contato" class="contato section" aria-labelledby="contato-titulo">
+      <span class="section__label">Fala com a gente</span>
+      <h2 id="contato-titulo" class="section__title">Contato</h2>
+
+      <div class="contato__grid">
+
+        <article class="contato__card">
+          <span class="contato__icon" aria-hidden="true">💬</span>
+          <h3 class="contato__title">WhatsApp</h3>
+          <p class="contato__desc">
+            Quer treinar com a gente, fechar parceria ou tirar qualquer dúvida?
+            Chama no zap — responde rápido e sem frescura.
+          </p>
+          <a
+            class="contato__link"
+            href="https://wa.me/5511987654321"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            (11) 98765-4321 → Chamar no WhatsApp
+          </a>
+        </article>
+
+        <article class="contato__card">
+          <span class="contato__icon" aria-hidden="true">📸</span>
+          <h3 class="contato__title">Instagram</h3>
+          <p class="contato__desc">
+            Desliza na DM que a gente vê. Manda seu vídeo, sua ideia, sua
+            colagem — tudo é bem-vindo por lá.
+          </p>
+          <a
+            class="contato__link"
+            href="https://instagram.com/poggers_sk8"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @poggers_sk8 → Ir pro perfil
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <a href="#hero" class="nav__logo footer__logo" aria-label="Voltar ao topo">
+      Asfalto<span class="nav__logo-accent">.</span>Livre
+    </a>
+    <p class="footer__copy">© 2025 Asfalto Livre · Poggers Skate Crew · Monte Belo, MG</p>
+    <p class="footer__tagline">Apoie o corre.</p>
+  </footer>
+
+  <div id="lightbox" class="lightbox is-hidden" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+    <div class="lightbox__box">
+      <button class="lightbox__close" id="lightboxClose" aria-label="Fechar">&#x2715;</button>
+      <img id="lightboxImg" class="lightbox__img" src="" alt="">
+      <p id="lightboxCaption" class="lightbox__caption"></p>
+    </div>
+  </div>
+
+  <script src="../src/carousel.js" defer></script>
+</body>
+</html>
