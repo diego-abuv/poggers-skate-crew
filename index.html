@@ -4,13 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Asfalto Livre — projeto cultural de skate da Poggers Skate Crew. São Paulo, desde 2018." />
+  <meta name="description" content="Asfalto Livre — projeto cultural de skate da Poggers Skate Crew. Monte Belo, MG, desde 2022." />
   <title>Asfalto Livre | Poggers Skate Crew</title>
+
+  <!--
+    FONTES
+    Bebas Neue  → títulos / display (--font-display)
+    DM Sans     → corpo de texto (--font-body)
+    Space Mono  → labels, contadores (--font-mono)
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap"
     rel="stylesheet"
   />
+
+  <link rel="icon" type="image/png" sizes="512x512" href="./assets/favicon.png">
+
   <link rel="stylesheet" href="./src/styles.css" />
 </head>
 
@@ -18,10 +28,12 @@
 
   <!-- ============================================================
        HEADER / NAV
+       - Fixo no topo com backdrop-filter blur
+       - <nav> semântico aninhado dentro do <header>
   ============================================================ -->
   <header class="nav" role="banner">
     <a href="#hero" class="nav__logo" aria-label="Asfalto Livre — início">
-      Asfalto<span class="nav__logo-accent">.</span>Livre
+      <span class="nav__logo-color">Poggers</span>SkateCrew
     </a>
 
     <nav aria-label="Navegação principal">
@@ -39,6 +51,9 @@
 
     <!-- ============================================================
          HERO
+         - Imagem de fundo definida via CSS em .hero__bg (background-image)
+         - Grain texture aplicada via pseudo-elemento ::before no .hero
+         - Gradiente de fade via ::after no .hero__bg
     ============================================================ -->
     <section id="hero" class="hero" aria-label="Apresentação">
       <div class="hero__bg" aria-hidden="true"></div>
@@ -47,7 +62,7 @@
         <span class="hero__eyebrow">Monte Belo, MG · Desde 2022</span>
 
         <h1 class="hero__title">
-          Asfalto<br /><span class="hero__title-accent">Livre</span>
+          Projeto <br /><span class="hero__title-accent">Asfalto Livre</span>
         </h1>
 
         <p class="hero__group">Poggers Skate Crew</p>
@@ -63,6 +78,11 @@
 
     <!-- ============================================================
          SOBRE
+         - Vídeo em loop silencioso no lugar de imagem estática
+         - IMPORTANTE: classe .sobre__img aplicada no <video> para herdar
+           aspect-ratio 4/5 e object-fit: cover do CSS
+         - autoplay só funciona com muted nos browsers modernos
+         - playsinline evita fullscreen automático no iOS
     ============================================================ -->
     <section id="sobre" class="sobre section" aria-labelledby="sobre-titulo">
       <div class="sobre__grid">
@@ -75,12 +95,13 @@
             loop
             muted
             playsinline
-            aria-label="Skatista em manobra urbana"
+            aria-label="Skatistas executando ollies em sequência"
           ></video>
+
           <div class="sobre__badge" aria-hidden="true">
             Cerca de
             <strong class="sobre__badge-number">16</strong>
-            Membros<br />ativos
+            Membros<br/>
           </div>
         </div>
 
@@ -93,8 +114,8 @@
 
           <p class="sobre__text">
             A Poggers Skate Crew nasceu em 2022 em Monte Belo, MG. Começamos
-            andando nos picos que a cidade tinha — a Rodoviária, o
-            Estacionamento da Prefeitura e a Quadrinha — e foi ali que o grupo
+            andando nos picos que a cidade tinha — a Estação Rodoviária, o
+            Estacionamento da Prefeitura e a Quadrinha na Praça de Esportes — e foi ali que o grupo
             foi tomando forma.
           </p>
           <p class="sobre__text">
@@ -124,40 +145,79 @@
     </section>
 
     <!-- ============================================================
-         GALERIA
+         GALERIA — CARROSSEL
+         - Slides suportam <img> ou <video>
+         - Dots gerados dinamicamente pelo carousel.js (não adicionar manualmente)
+         - Counter (#carouselCounter) atualizado pelo JS — deixar vazio no HTML
+         - Clique em qualquer slide abre o lightbox:
+             <img>   → lightbox com imagem e dimensionamento portrait/landscape
+             <video> → lightbox com player customizado (controles, fullscreen, seek)
     ============================================================ -->
     <section id="galeria" class="galeria section" aria-labelledby="galeria-titulo">
 
       <span class="section__label">Momentos</span>
       <h2 id="galeria-titulo" class="section__title">Galeria</h2>
       <p class="galeria__intro">
-        Cada foto conta uma queda. Cada queda virou um trick.
+        Cada mídia conta uma queda. Cada queda virou um trick.
       </p>
-    
+
       <div class="carousel" id="carousel">
         <div class="carousel__track" id="carouselTrack">
-    
+
           <figure class="carousel__slide">
-            <img src="../assets/ollie-grab.JPG" alt="Skatista executando trick na rua" loading="lazy">
-            <figcaption class="carousel__caption">Street · Monte Belo, MG</figcaption>
+            <img
+              src="../assets/ollie-grab.JPG"
+              alt="Skatista executando ollie grab na rua"
+              loading="lazy"
+            />
+            <figcaption class="carousel__caption">Ollie Grab na 45° · Emize Skate Park, Muzambinho</figcaption>
           </figure>
-    
+
           <figure class="carousel__slide">
-            <img src="../assets/rockslide.jpg" alt="Sessão na pista" loading="lazy">
-            <figcaption class="carousel__caption">Sessão · Emize Skate Park, Muzambinho</figcaption>
+            <img
+              src="../assets/rockslide.jpg"
+              alt="Skatista em rock slide no corrimão"
+              loading="lazy"
+            />
+            <figcaption class="carousel__caption">Rockslide no corrimão · Emize Skate Park, Muzambinho</figcaption>
           </figure>
-    
+
+          <!--
+            SLIDE COM VÍDEO
+            - autoplay + muted + loop + playsinline para reprodução automática no carrossel
+            - No lightbox, o JS cria um novo <video> com controls e preload="auto"
+          -->
+          <figure class="carousel__slide">
+            <video
+              src="../assets/ledge.mp4"
+              autoplay
+              loop
+              muted
+              playsinline
+              aria-label="Skatista executando manobra no ledge"
+            ></video>
+            <figcaption class="carousel__caption">50-50 Grind no caixote · Emize Skate Park, Muzambinho</figcaption>
+          </figure>
+
         </div>
-    
+
+        <!-- Barra de progresso do autoplay (largura animada via JS) -->
         <div class="carousel__progress" id="carouselProgress"></div>
-        <span class="carousel__counter" id="carouselCounter" aria-live="polite">01 / 05</span>
-    
+
+        <!--
+          Counter vazio: o JS preenche com "01 / 03" ao inicializar.
+          Nunca hardcode o total aqui — ele muda conforme os slides.
+          aria-live="polite" anuncia mudanças para leitores de tela.
+        -->
+        <span class="carousel__counter" id="carouselCounter" aria-live="polite"></span>
+
         <button class="carousel__btn carousel__btn--prev" id="carouselPrev" aria-label="Slide anterior">&#8592;</button>
         <button class="carousel__btn carousel__btn--next" id="carouselNext" aria-label="Próximo slide">&#8594;</button>
       </div>
-    
+
+      <!-- Dots gerados dinamicamente pelo carousel.js — não adicionar filhos aqui -->
       <div class="carousel__dots" id="carouselDots" role="tablist" aria-label="Navegação da galeria"></div>
-    
+
     </section>
 
     <!-- ============================================================
@@ -167,18 +227,20 @@
       <div class="instagram__wrap">
 
         <div class="instagram__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069
-              1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919
-              4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919
+              4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069
+              4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204
+              0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849
               0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057
-              1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073
-              7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98
-              6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2
-              6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014
-              15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4
-              4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0
-              000-2.881z"
+              1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273
+              2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2
+              4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0
+              3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948
+              0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014
+              15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0
+              000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44
+              0 100 2.881 1.44 1.44 0 000-2.881z"
             />
           </svg>
         </div>
@@ -186,7 +248,7 @@
         <span class="section__label">Redes sociais</span>
         <h2 id="instagram-titulo" class="section__title">Segue a gente</h2>
         <p class="instagram__sub">
-          Trick, bastidor, encontro e muito caô do dia a dia. Bora fazer essa
+          Tricks, bastidores, encontros e muito mais. Bora fazer essa
           comunidade crescer!
         </p>
         <span class="instagram__handle">@poggers_sk8</span>
@@ -216,10 +278,13 @@
         <li class="evento">
           <span class="evento__num" aria-hidden="true">01</span>
           <span class="evento__tag">Mensal · 2° Sáb do mês · 15h</span>
-          <h3 class="evento__title">Reunião - PGRS</h3>
+          <h3 class="evento__title">Reunião — PGRS</h3>
           <p class="evento__desc">
-            Quadrinha - Praça de Esportes. <br> Encontro aberto ao publico - Tricks, ideias e corre geral.
+            Encontro aberto ao público — tricks, ideias e corre geral.
           </p>
+          <a class="evento_location" href="https://maps.app.goo.gl/iFXE3NkWmDvjFjKm7" target="_blank" rel="noopener noreferrer">
+            📍Quadrinha — Praça de Esportes
+          </a>
         </li>
 
       </ul>
@@ -257,18 +322,19 @@
           <div class="apoio__card">
             <h3 class="apoio__card-title">📲 PIX</h3>
             <p class="apoio__card-desc">Transferência rápida direto pro coletivo.</p>
-            <code class="apoio__pix-key">123.456.789-00</code>
-            <small class="apoio__pix-name">Poggers Skate Crew</small>
+            <code class="apoio__pix-key">f85cb6cc-80df-41ae-b257-67eb56ffc182</code>
+            <small class="apoio__pix-name">Diego Antônio Bueno Vitor - PicPay</small>
           </div>
 
           <div class="apoio__card">
             <h3 class="apoio__card-title">🔗 Vakinha Online</h3>
             <p class="apoio__card-desc">
-              Meta atual: R$ 3.000 — nova rampa pro espaço comunitário.
+              Meta atual: R$ 1.500 — Quarter Pipe. <br>
+              Nova rampa pro espaço comunitário.
             </p>
             <a
               class="btn btn--dark"
-              href="https://vakinha.com.br"
+              href="https://www.vakinha.com.br/vaquinha/quarter-rampa-de-skate"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -293,16 +359,16 @@
           <span class="contato__icon" aria-hidden="true">💬</span>
           <h3 class="contato__title">WhatsApp</h3>
           <p class="contato__desc">
-            Quer treinar com a gente, fechar parceria ou tirar qualquer dúvida?
-            Chama no zap — responde rápido e sem frescura.
+            Quer treinar com a gente, fechar parceria ou tirar qualquer dúvida? <br>
+            Chama no zap — tudo é bem-vindo.
           </p>
           <a
             class="contato__link"
-            href="https://wa.me/5511987654321"
+            href="https://chat.whatsapp.com/H1VoSoDyt007YdN5I4uRdE"
             target="_blank"
             rel="noopener noreferrer"
           >
-            (11) 98765-4321 → Chamar no WhatsApp
+            Grupo de WhatsApp → Entrar no grupo
           </a>
         </article>
 
@@ -311,7 +377,7 @@
           <h3 class="contato__title">Instagram</h3>
           <p class="contato__desc">
             Desliza na DM que a gente vê. Manda seu vídeo, sua ideia, sua
-            colagem — tudo é bem-vindo por lá.
+            colagem — faça parte do projeto.
           </p>
           <a
             class="contato__link"
@@ -319,7 +385,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            @poggers_sk8 → Ir pro perfil
+          Acessar perfil → @poggers_sk8
           </a>
         </article>
 
@@ -333,13 +399,22 @@
   ============================================================ -->
   <footer class="footer" role="contentinfo">
     <a href="#hero" class="nav__logo footer__logo" aria-label="Voltar ao topo">
-      Asfalto<span class="nav__logo-accent">.</span>Livre
+      <span class="nav__logo-color">Poggers</span>SkateCrew
     </a>
     <p class="footer__copy">© 2025 Asfalto Livre · Poggers Skate Crew · Monte Belo, MG</p>
     <p class="footer__tagline">Apoie o corre.</p>
   </footer>
 
-  <div id="lightbox" class="lightbox is-hidden" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+  <!-- ============================================================
+       LIGHTBOX
+       POSIÇÃO: obrigatoriamente APÓS o <footer> e ANTES do <script>
+       - Oculto por padrão via .is-hidden (display: none)
+       - Para imagens: o JS redimensiona #lightboxImg com base em naturalWidth/Height
+       - Para vídeos:  o JS injeta .lightbox__player antes de #lightboxCaption
+                       e remove ao fechar (cleanup de memória)
+       - Fechar: botão #lightboxClose | clique no backdrop | tecla Escape
+  ============================================================ -->
+  <div id="lightbox" class="lightbox is-hidden" role="dialog" aria-modal="true" aria-label="Mídia ampliada">
     <div class="lightbox__box">
       <button class="lightbox__close" id="lightboxClose" aria-label="Fechar">&#x2715;</button>
       <img id="lightboxImg" class="lightbox__img" src="" alt="">
@@ -347,6 +422,13 @@
     </div>
   </div>
 
+  <!--
+    SCRIPT
+    - defer: executa após o DOM completo, garante que todos os elementos
+      (#carousel, #lightbox, etc.) existam quando o JS rodar
+    - Deve vir após o markup do lightbox
+  -->
   <script src="./src/carousel.js" defer></script>
+
 </body>
 </html>

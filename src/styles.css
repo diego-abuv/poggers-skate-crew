@@ -1,28 +1,52 @@
 /* ================================================================
    ASFALTO LIVRE — styles.css
-   Poggers Skate Crew
-   ================================================================ */
+   Poggers Skate Crew · Monte Belo, MG
+
+   ÍNDICE
+   1.  Custom Properties (tokens de design)
+   2.  Reset & Base
+   3.  Scrollbar
+   4.  Utilitários de seção (.section, .section__label, etc.)
+   5.  Botões (.btn)
+   6.  Header / Nav
+   7.  Hero
+   8.  Sobre
+   9.  Galeria
+   10. Carrossel
+   11. Lightbox
+   12. Player de vídeo customizado (.lp__)
+   13. Instagram
+   14. Eventos
+   15. Apoie
+   16. Contato
+   17. Footer
+   18. Animações
+   19. Responsivo
+================================================================ */
+
 
 /* ----------------------------------------------------------------
    1. CUSTOM PROPERTIES
+   Todos os valores de cor, tipografia e espaçamento centralizados
+   aqui. Evita magic numbers espalhados no CSS.
 ---------------------------------------------------------------- */
 :root {
-  /* Brand colors */
-  --color-bg:        #0F1010;
-  --color-surface:   #161511;
-  --color-card:      #24231E;
-  --color-border:    #4C4C47;
-  --color-gold:      #B79639;
-  --color-gold-dim:  #8f7528;
-  --color-text:      #E8E4DA;
-  --color-muted:     #6b6960;
+  /* Paleta de cores */
+  --color-bg:       #0F1010;   /* fundo principal da página */
+  --color-surface:  #161511;   /* fundo de seções alternadas */
+  --color-card:     #24231E;   /* fundo de cards e elementos elevados */
+  --color-border:   #4C4C47;   /* bordas e separadores */
+  --color-gold:     #B79639;   /* cor de destaque principal */
+  --color-gold-dim: #8f7528;   /* variante escurecida do dourado (hover, etc.) */
+  --color-text:     #E8E4DA;   /* texto principal */
+  --color-muted:    #6b6960;   /* texto secundário / placeholders */
 
-  /* Typography */
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body:    'DM Sans', sans-serif;
-  --font-mono:    'Space Mono', monospace;
+  /* Tipografia */
+  --font-display: 'Bebas Neue', sans-serif;  /* títulos grandes */
+  --font-body:    'DM Sans', sans-serif;     /* corpo de texto */
+  --font-mono:    'Space Mono', monospace;   /* labels, contadores, código */
 
-  /* Spacing scale */
+  /* Escala de espaçamento — usar variáveis em vez de px soltos */
   --space-xs:  8px;
   --space-sm:  16px;
   --space-md:  24px;
@@ -30,10 +54,11 @@
   --space-xl:  60px;
   --space-2xl: 100px;
 
-  /* Transitions */
+  /* Transições padrão */
   --transition-fast: 0.2s ease;
   --transition-mid:  0.4s ease;
 }
+
 
 /* ----------------------------------------------------------------
    2. RESET & BASE
@@ -59,7 +84,13 @@ body {
   overflow-x: hidden;
 }
 
-img {
+/*
+  Imagens e vídeos responsivos por padrão.
+  height: auto preserva a proporção ao redimensionar.
+  object-fit específico é definido por componente.
+*/
+img,
+video {
   display: block;
   max-width: 100%;
   height: auto;
@@ -74,23 +105,26 @@ ul {
   list-style: none;
 }
 
+
 /* ----------------------------------------------------------------
-   3. SCROLLBAR
+   3. SCROLLBAR (webkit)
 ---------------------------------------------------------------- */
 ::-webkit-scrollbar        { width: 4px; }
 ::-webkit-scrollbar-track  { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb  { background: var(--color-gold); border-radius: 2px; }
 
+
 /* ----------------------------------------------------------------
-   4. SHARED UTILITIES
+   4. UTILITÁRIOS DE SEÇÃO
+   Classes reutilizadas em todas as sections da página.
 ---------------------------------------------------------------- */
 
-/* Section wrapper */
+/* Padding padrão de cada section */
 .section {
   padding: var(--space-2xl) var(--space-xl);
 }
 
-/* Section label (eyebrow text) */
+/* Eyebrow label acima do título (ex: "Quem somos", "Momentos") */
 .section__label {
   display: block;
   font-family: var(--font-mono);
@@ -101,11 +135,12 @@ ul {
   margin-bottom: var(--space-sm);
 }
 
+/* Variante para seções com fundo claro (ex: seção Apoio) */
 .section__label--dark {
   color: rgba(0, 0, 0, 0.5);
 }
 
-/* Section heading */
+/* Título principal de cada seção */
 .section__title {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 6vw, 5rem);
@@ -114,11 +149,12 @@ ul {
   margin-bottom: var(--space-lg);
 }
 
+/* Variante escura para seções com fundo claro */
 .section__title--dark {
   color: var(--color-bg);
 }
 
-/* Decorative divider */
+/* Linha decorativa abaixo do título */
 .section__divider {
   width: 48px;
   height: 3px;
@@ -130,8 +166,10 @@ ul {
   background: var(--color-bg);
 }
 
+
 /* ----------------------------------------------------------------
-   5. BUTTONS
+   5. BOTÕES
+   .btn é a base; modificadores definem variantes visuais.
 ---------------------------------------------------------------- */
 .btn {
   display: inline-block;
@@ -140,46 +178,49 @@ ul {
   letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background var(--transition-fast),
-              color var(--transition-fast),
-              border-color var(--transition-fast),
-              transform var(--transition-fast);
+  transition:
+    background    var(--transition-fast),
+    color         var(--transition-fast),
+    border-color  var(--transition-fast),
+    transform     var(--transition-fast);
 }
 
+/* CTA principal — fundo dourado */
 .btn--primary {
   padding: 14px 36px;
   background: var(--color-gold);
   color: var(--color-bg);
 }
-
 .btn--primary:hover {
   background: var(--color-text);
   transform: translateY(-2px);
 }
 
+/* Secundário — contorno branco */
 .btn--outline {
   padding: 14px 44px;
   border: 2px solid var(--color-text);
   color: var(--color-text);
 }
-
 .btn--outline:hover {
   background: var(--color-text);
   color: var(--color-bg);
 }
 
+/* Terciário — fundo escuro, usado sobre fundos claros (seção Apoio) */
 .btn--dark {
   padding: 12px 28px;
   background: var(--color-bg);
   color: var(--color-gold);
 }
-
 .btn--dark:hover {
   transform: translateY(-2px);
 }
 
+
 /* ----------------------------------------------------------------
    6. HEADER / NAV
+   Fixo no topo, glassmorphism via backdrop-filter.
 ---------------------------------------------------------------- */
 .nav {
   position: fixed;
@@ -203,14 +244,10 @@ ul {
   color: var(--color-text);
   transition: opacity var(--transition-fast);
 }
+.nav__logo:hover { opacity: 0.8; }
 
-.nav__logo:hover {
-  opacity: 0.8;
-}
-
-.nav__logo-accent {
-  color: var(--color-gold);
-}
+/* O ponto entre "Asfalto" e "Livre" */
+.nav__logo-color { color: var(--color-gold); }
 
 .nav__list {
   display: flex;
@@ -225,13 +262,13 @@ ul {
   color: var(--color-muted);
   transition: color var(--transition-fast);
 }
+.nav__link:hover { color: var(--color-gold); }
 
-.nav__link:hover {
-  color: var(--color-gold);
-}
 
 /* ----------------------------------------------------------------
    7. HERO
+   Altura mínima de 100vh. Conteúdo alinhado ao rodapé do viewport.
+   Imagem de fundo via .hero__bg (CSS background-image).
 ---------------------------------------------------------------- */
 .hero {
   position: relative;
@@ -242,7 +279,7 @@ ul {
   overflow: hidden;
 }
 
-/* Background image layer */
+/* Camada da imagem de fundo com brightness reduzido */
 .hero__bg {
   position: absolute;
   inset: 0;
@@ -252,7 +289,7 @@ ul {
   filter: brightness(0.3);
 }
 
-/* Gradient fade to page background */
+/* Gradiente de fade do fundo da imagem para a cor de fundo da página */
 .hero__bg::after {
   content: '';
   position: absolute;
@@ -260,7 +297,7 @@ ul {
   background: linear-gradient(to top, var(--color-bg) 0%, transparent 55%);
 }
 
-/* Grain texture overlay */
+/* Textura grain sobre tudo */
 .hero::before {
   content: '';
   position: absolute;
@@ -271,6 +308,7 @@ ul {
   opacity: 0.4;
 }
 
+/* Conteúdo textual — acima de todas as camadas decorativas */
 .hero__content {
   position: relative;
   z-index: 2;
@@ -298,11 +336,9 @@ ul {
   text-transform: uppercase;
   animation: fadeUp 0.8s 0.15s ease both;
 }
+.hero__title-accent { color: var(--color-gold); }
 
-.hero__title-accent {
-  color: var(--color-gold);
-}
-
+/* Nome do grupo abaixo do título principal */
 .hero__group {
   font-family: var(--font-mono);
   font-size: clamp(0.75rem, 1.2vw, 0.9rem);
@@ -327,6 +363,7 @@ ul {
   animation: fadeUp 0.8s 0.5s ease both;
 }
 
+/* Indicador "Scroll" com linha vertical animada */
 .hero__scroll {
   position: absolute;
   bottom: 36px;
@@ -343,7 +380,6 @@ ul {
   text-transform: uppercase;
   animation: fadeUp 1s 0.65s ease both;
 }
-
 .hero__scroll::after {
   content: '';
   width: 1px;
@@ -351,8 +387,11 @@ ul {
   background: linear-gradient(to bottom, var(--color-muted), transparent);
 }
 
+
 /* ----------------------------------------------------------------
    8. SOBRE
+   Grid de 2 colunas: mídia (imagem ou vídeo) + texto.
+   IMPORTANTE: .sobre__img se aplica tanto a <img> quanto a <video>.
 ---------------------------------------------------------------- */
 .sobre {
   background: var(--color-surface);
@@ -371,7 +410,13 @@ ul {
   position: relative;
 }
 
-.sobre__img {
+/*
+  Aplicado tanto a <img> quanto a <video> na seção Sobre.
+  aspect-ratio 4/5 mantém proporção portrait.
+  object-fit: cover garante preenchimento sem distorção.
+*/
+.sobre__img,
+video.sobre__img {
   width: 100%;
   max-width: 100%;
   height: auto;
@@ -380,6 +425,7 @@ ul {
   filter: grayscale(25%) contrast(1.05);
 }
 
+/* Badge dourado sobreposto ao canto inferior direito da mídia */
 .sobre__badge {
   position: absolute;
   bottom: -20px;
@@ -393,7 +439,6 @@ ul {
   text-transform: uppercase;
   line-height: 1.3;
 }
-
 .sobre__badge-number {
   font-size: 2.5rem;
   display: block;
@@ -406,13 +451,13 @@ ul {
   margin-bottom: 20px;
 }
 
+/* Caixa de missão com borda esquerda dourada */
 .sobre__missao {
   margin-top: var(--space-lg);
   border-left: 3px solid var(--color-gold);
   padding: 20px var(--space-md);
   background: rgba(183, 150, 57, 0.07);
 }
-
 .sobre__missao-title {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -422,8 +467,10 @@ ul {
   margin-bottom: var(--space-xs);
 }
 
+
 /* ----------------------------------------------------------------
    9. GALERIA
+   Seção container — o grid visual é feito pelo carrossel.
 ---------------------------------------------------------------- */
 .galeria {
   background: var(--color-bg);
@@ -436,54 +483,13 @@ ul {
   font-size: 1rem;
 }
 
-.galeria__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-}
-
-.galeria__item {
-  overflow: hidden;
-  position: relative;
-  background: var(--color-card);
-  margin: 0;
-}
-
-.galeria__item--wide {
-  grid-column: span 2;
-}
-
-.galeria__item img {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  min-height: 220px;
-  object-fit: cover;
-  filter: grayscale(20%) contrast(1.05);
-  transition: transform var(--transition-mid),
-              filter var(--transition-fast);
-}
-
-.galeria__item:hover img {
-  transform: scale(1.06);
-  filter: grayscale(0%) contrast(1.1);
-}
-
-.galeria__item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(183, 150, 57, 0.15), transparent 50%);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
-.galeria__item:hover::after {
-  opacity: 1;
-}
 
 /* ----------------------------------------------------------------
-   9b. CAROUSEL (substitui .galeria__grid)
+   10. CARROSSEL
+   - .carousel: container com overflow hidden
+   - .carousel__track: flex row que desliza via transform translateX
+   - .carousel__slide: cada item ocupa 100% da largura do track
+   - Slides suportam <img> e <video>
 ---------------------------------------------------------------- */
 .carousel {
   position: relative;
@@ -491,7 +497,7 @@ ul {
   overflow: hidden;
   background: var(--color-bg);
   border-radius: var(--space-xs);
-  user-select: none;
+  user-select: none; /* evita seleção de texto ao arrastar */
 }
 
 .carousel__track {
@@ -499,6 +505,7 @@ ul {
   transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
+/* Classe aplicada temporariamente pelo JS ao reposicionar sem animação */
 .carousel__track.no-transition {
   transition: none;
 }
@@ -510,6 +517,7 @@ ul {
   margin: 0;
 }
 
+/* Imagens do carrossel */
 .carousel__slide img {
   width: 100%;
   height: 100%;
@@ -519,26 +527,38 @@ ul {
   filter: brightness(0.88);
 }
 
+/* Vídeos do carrossel — mesmas regras das imagens */
+.carousel__slide video {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Caption sobreposta no rodapé do slide */
 .carousel__caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 28px 32px 20px;
-  background: linear-gradient(to top, rgba(15,16,16,0.85) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(15, 16, 16, 0.85) 0%, transparent 100%);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(232,228,218,0.65);
+  color: rgba(232, 228, 218, 0.65);
+  pointer-events: none; /* caption não bloqueia clique no slide */
 }
 
+/* Botões de navegação prev/next */
 .carousel__btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(183,150,57,0.12);
-  border: 1px solid rgba(183,150,57,0.35);
+  background: rgba(183, 150, 57, 0.12);
+  border: 1px solid rgba(183, 150, 57, 0.35);
   color: var(--color-gold);
   width: 44px;
   height: 44px;
@@ -552,26 +572,26 @@ ul {
   transition: background var(--transition-fast), border-color var(--transition-fast);
   z-index: 10;
 }
-
 .carousel__btn:hover {
-  background: rgba(183,150,57,0.3);
+  background: rgba(183, 150, 57, 0.3);
   border-color: var(--color-gold);
 }
-
 .carousel__btn--prev { left: 16px; }
 .carousel__btn--next { right: 16px; }
 
+/* Barra de progresso do autoplay (largura animada via JS) */
 .carousel__progress {
   position: absolute;
   bottom: 0;
   left: 0;
   height: 2px;
+  width: 0%;
   background: var(--color-gold);
   transition: width 0.08s linear;
   z-index: 5;
-  width: 0%;
 }
 
+/* Contador "01 / 03" — preenchido pelo JS */
 .carousel__counter {
   position: absolute;
   top: 16px;
@@ -579,10 +599,12 @@ ul {
   font-family: var(--font-mono);
   font-size: 0.65rem;
   letter-spacing: 2px;
-  color: rgba(183,150,57,0.75);
+  color: rgba(183, 150, 57, 0.75);
   z-index: 5;
+  pointer-events: none;
 }
 
+/* Dots de navegação — gerados pelo JS */
 .carousel__dots {
   display: flex;
   justify-content: center;
@@ -594,27 +616,24 @@ ul {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(183,150,57,0.25);
+  background: rgba(183, 150, 57, 0.25);
   border: none;
   cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
   padding: 0;
+  transition: background var(--transition-fast), transform var(--transition-fast);
 }
-
 .carousel__dot.is-active {
   background: var(--color-gold);
   transform: scale(1.5);
 }
 
-@media (max-width: 560px) {
-  .carousel__btn { width: 36px; height: 36px; font-size: 0.9rem; }
-  .carousel__btn--prev { left: 8px; }
-  .carousel__btn--next { right: 8px; }
-  .carousel__caption { padding: 20px 16px 14px; font-size: 0.6rem; }
-}
 
 /* ----------------------------------------------------------------
-   LIGHTBOX
+   11. LIGHTBOX
+   Overlay fullscreen para exibição de imagens e vídeos ampliados.
+   - .is-hidden   → display:none (fechado)
+   - .is-loading  → imagem/vídeo ainda carregando (opacidade 0)
+   - Backdrop escuro semitransparente com blur
 ---------------------------------------------------------------- */
 .lightbox {
   position: fixed;
@@ -633,15 +652,12 @@ ul {
   display: none;
 }
 
+/* Imagem fica invisível enquanto carrega; o JS remove is-loading após load */
 .lightbox.is-loading .lightbox__img {
   opacity: 0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
+/* Container central que agrupa mídia + legenda + botão fechar */
 .lightbox__box {
   position: relative;
   display: flex;
@@ -651,19 +667,20 @@ ul {
   animation: scaleIn 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
-@keyframes scaleIn {
-  from { transform: scale(0.92); opacity: 0; }
-  to   { transform: scale(1);    opacity: 1; }
-}
-
+/* Imagem estática no lightbox */
 .lightbox__img {
   display: block;
   object-fit: contain;
   border-radius: var(--space-xs);
   transition: opacity 0.2s ease;
   box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
+  /*
+    maxWidth e maxHeight são definidos inline pelo JS
+    com base em naturalWidth/naturalHeight (portrait vs landscape)
+  */
 }
 
+/* Legenda do lightbox */
 .lightbox__caption {
   font-family: var(--font-mono);
   font-size: 0.65rem;
@@ -673,6 +690,7 @@ ul {
   text-align: center;
 }
 
+/* Botão de fechar — posicionado no canto superior direito do .lightbox__box */
 .lightbox__close {
   position: absolute;
   top: -14px;
@@ -691,39 +709,231 @@ ul {
   transition: background var(--transition-fast), border-color var(--transition-fast);
   z-index: 10;
 }
-
 .lightbox__close:hover {
   background: var(--color-gold);
   border-color: var(--color-gold);
   color: var(--color-bg);
 }
 
-@media (max-width: 560px) {
-  .lightbox {
-    padding: var(--space-sm);
-    align-items: flex-end;
-  }
-
-  .lightbox__box {
-    width: 100%;
-  }
-
-  .lightbox__img {
-    max-width: 100% !important;
-    max-height: 70vh !important;
-    width: 100% !important;
-    height: auto !important;
-    object-fit: contain;
-  }
-
-  .lightbox__close {
-    top: -12px;
-    right: 0;
-  }
-}
 
 /* ----------------------------------------------------------------
-   10. INSTAGRAM
+   12. PLAYER DE VÍDEO CUSTOMIZADO (.lp__)
+   Injetado pelo JS dentro do .lightbox__box quando o slide é um vídeo.
+   Estrutura criada dinamicamente:
+     .lightbox__player
+       video.lightbox__video
+       .lp__overlay (.lp__overlay--visible quando pausado)
+         .lp__big-play
+       .lp__controls
+         .lp__progress-wrap
+           .lp__buf   (buffer)
+           .lp__bar   (progresso)
+           .lp__thumb (indicador de posição)
+         .lp__row
+           .lp__btn#lpPlay
+           .lp__btn#lpMute
+           input.lp__vol
+           span.lp__time
+           .lp__btn#lpFs
+---------------------------------------------------------------- */
+
+/* Wrapper do player — ocupa a largura definida pelo JS */
+.lightbox__player {
+  position: relative;
+  background: #0a0a0a;
+  border-radius: var(--space-xs);
+  overflow: hidden;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
+}
+
+/* O <video> em si — altura máxima para caber na viewport */
+.lightbox__video {
+  width: 100%;
+  display: block;
+  max-height: 75vh;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.lp__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 2;
+  pointer-events: none;
+  cursor: pointer;
+}
+
+.lp__overlay--visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lp__big-play {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  background: rgba(183, 150, 57, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s;
+  pointer-events: none; /* o clique é capturado pelo overlay, não pelo botão */
+}
+
+.lp__overlay--visible:hover .lp__big-play {
+  transform: scale(1.08);
+}
+
+.lp__controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 14px 10px;
+  background: linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, transparent 100%);
+  z-index: 3; /* acima do overlay para receber seus próprios cliques */
+}
+
+/* ── Fullscreen ─────────────────────────────────────────────── */
+
+/* Remove restrições de tamanho em fullscreen */
+.lightbox__player:fullscreen,
+.lightbox__player:-webkit-full-screen {
+  max-width: 100vw !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #000;
+}
+
+.lightbox__player:fullscreen .lightbox__video,
+.lightbox__player:-webkit-full-screen .lightbox__video {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  object-fit: contain;
+}
+
+.lightbox__player:fullscreen .lp__controls,
+.lightbox__player:-webkit-full-screen .lp__controls {
+  position: absolute;
+  bottom: 0;
+}
+
+.lightbox__player:fullscreen .lp__overlay,
+.lightbox__player:-webkit-full-screen .lp__overlay {
+  height: 100vh;
+}
+
+/* Track de progresso clicável */
+.lp__progress-wrap {
+  position: relative;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  transition: height 0.1s;
+}
+.lp__progress-wrap:hover { height: 5px; }
+
+/* Buffer e barra de progresso — transform-origin: left para animar via scaleX */
+.lp__bar,
+.lp__buf {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.lp__buf { background: rgba(255, 255, 255, 0.22); }
+.lp__bar { background: #B79639; }
+
+/*
+  Bolinha indicadora de posição no seek bar.
+  - position: absolute com left definido em % pelo JS
+  - transform: translate(-50%, -50%) centraliza na posição
+  - scale(0) por padrão, scale(1) no hover do track
+*/
+.lp__thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #B79639;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.15s;
+  pointer-events: none;
+}
+.lp__progress-wrap:hover .lp__thumb {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Linha de botões abaixo do seek bar */
+.lp__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botões do player (play, mute, fullscreen) */
+.lp__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+  transition: opacity 0.15s;
+}
+.lp__btn:hover { opacity: 1; }
+
+/* Slider de volume */
+.lp__vol {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+.lp__vol::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #B79639;
+  cursor: pointer;
+}
+
+/* Tempo atual / duração total */
+.lp__time {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+  color: rgba(232, 228, 218, 0.55);
+  flex: 1; /* empurra o botão de fullscreen para a direita */
+}
+
+
+/* ----------------------------------------------------------------
+   13. INSTAGRAM
 ---------------------------------------------------------------- */
 .instagram {
   background: var(--color-surface);
@@ -739,6 +949,7 @@ ul {
   align-items: center;
 }
 
+/* Ícone com gradiente do Instagram */
 .instagram__icon {
   display: inline-flex;
   align-items: center;
@@ -749,7 +960,6 @@ ul {
   background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   margin-bottom: var(--space-md);
 }
-
 .instagram__icon svg {
   width: 32px;
   height: 32px;
@@ -770,8 +980,9 @@ ul {
   margin-bottom: var(--space-md);
 }
 
+
 /* ----------------------------------------------------------------
-   11. EVENTOS
+   14. EVENTOS
 ---------------------------------------------------------------- */
 .eventos {
   background: var(--color-bg);
@@ -794,6 +1005,7 @@ ul {
   transition: border-color var(--transition-fast);
 }
 
+/* Barra dourada que cresce verticalmente no hover */
 .evento::before {
   content: '';
   position: absolute;
@@ -804,14 +1016,8 @@ ul {
   background: var(--color-gold);
   transition: height var(--transition-mid);
 }
-
-.evento:hover {
-  border-color: var(--color-gold);
-}
-
-.evento:hover::before {
-  height: 100%;
-}
+.evento:hover { border-color: var(--color-gold); }
+.evento:hover::before { height: 100%; }
 
 .evento__num {
   display: block;
@@ -822,10 +1028,7 @@ ul {
   margin-bottom: 12px;
   transition: color var(--transition-fast);
 }
-
-.evento:hover .evento__num {
-  color: rgba(183, 150, 57, 0.2);
-}
+.evento:hover .evento__num { color: rgba(183, 150, 57, 0.2); }
 
 .evento__tag {
   display: block;
@@ -851,8 +1054,20 @@ ul {
   line-height: 1.5;
 }
 
+.evento_location {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: var(--color-gold);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+  margin-top: auto;
+}
+
 /* ----------------------------------------------------------------
-   12. APOIE
+   15. APOIE
+   Seção com fundo dourado — texto e elementos em cor escura.
 ---------------------------------------------------------------- */
 .apoio {
   background: var(--color-gold);
@@ -871,7 +1086,6 @@ ul {
   color: rgba(0, 0, 0, 0.7);
   margin-bottom: var(--space-sm);
 }
-
 .apoio__text--strong {
   font-weight: 700;
   color: var(--color-bg);
@@ -892,10 +1106,7 @@ ul {
   gap: var(--space-xs);
   transition: background var(--transition-fast);
 }
-
-.apoio__card:hover {
-  background: rgba(0, 0, 0, 0.18);
-}
+.apoio__card:hover { background: rgba(0, 0, 0, 0.18); }
 
 .apoio__card-title {
   font-family: var(--font-display);
@@ -910,6 +1121,7 @@ ul {
   color: rgba(0, 0, 0, 0.6);
 }
 
+/* Chave PIX em fonte mono com fundo levemente escurecido */
 .apoio__pix-key {
   display: inline-block;
   font-family: var(--font-mono);
@@ -925,8 +1137,9 @@ ul {
   color: rgba(0, 0, 0, 0.45);
 }
 
+
 /* ----------------------------------------------------------------
-   13. CONTATO
+   16. CONTATO
 ---------------------------------------------------------------- */
 .contato {
   background: var(--color-surface);
@@ -949,14 +1162,9 @@ ul {
   gap: var(--space-sm);
   transition: border-color var(--transition-fast);
 }
+.contato__card:hover { border-color: var(--color-gold); }
 
-.contato__card:hover {
-  border-color: var(--color-gold);
-}
-
-.contato__icon {
-  font-size: 1.4rem;
-}
+.contato__icon { font-size: 1.4rem; }
 
 .contato__title {
   font-family: var(--font-display);
@@ -981,13 +1189,11 @@ ul {
   transition: border-color var(--transition-fast);
   margin-top: auto;
 }
+.contato__link:hover { border-color: var(--color-gold); }
 
-.contato__link:hover {
-  border-color: var(--color-gold);
-}
 
 /* ----------------------------------------------------------------
-   14. FOOTER
+   17. FOOTER
 ---------------------------------------------------------------- */
 .footer {
   background: var(--color-bg);
@@ -998,9 +1204,7 @@ ul {
   justify-content: space-between;
 }
 
-.footer__logo {
-  font-size: 1.2rem;
-}
+.footer__logo { font-size: 1.2rem; }
 
 .footer__copy,
 .footer__tagline {
@@ -1010,28 +1214,47 @@ ul {
   letter-spacing: 1px;
 }
 
-/* ----------------------------------------------------------------
-   15. ANIMATIONS
----------------------------------------------------------------- */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* ----------------------------------------------------------------
-   16. RESPONSIVE
+   18. ANIMAÇÕES
 ---------------------------------------------------------------- */
+
+/* Entrada de baixo para cima — usada nos elementos do hero */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade simples — usado no backdrop do lightbox */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Scale + fade — usado no conteúdo do lightbox */
+@keyframes scaleIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Rotação do indicador de buffering do player */
+@keyframes lpSpin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ----------------------------------------------------------------
+   19. RESPONSIVO
+---------------------------------------------------------------- */
+
+/* Tablet / mobile largo (≤ 900px) */
 @media (max-width: 900px) {
+
   .nav {
     padding: 16px var(--space-md);
   }
 
+  /* Links do nav ocultos em mobile — implementar hamburguer se necessário */
   .nav__list {
     display: none;
   }
@@ -1048,6 +1271,7 @@ ul {
     right: var(--space-md);
   }
 
+  /* Grids de 2 colunas viram 1 coluna */
   .sobre__grid,
   .apoio__grid,
   .contato__grid {
@@ -1055,29 +1279,21 @@ ul {
     gap: var(--space-lg);
   }
 
+  /* Espaço para o badge não sobrepor conteúdo abaixo */
   .sobre__media {
     padding-bottom: 28px;
   }
 
+  /* Badge reposicionado para não sair do container */
   .sobre__badge {
     right: 0;
     bottom: 0;
   }
 
-  .sobre__img {
+  /* Proporção mais horizontal em mobile */
+  .sobre__img,
+  video.sobre__img {
     aspect-ratio: 3 / 2;
-  }
-
-  .galeria__grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .galeria__item--wide {
-    grid-column: span 1;
-  }
-
-  .galeria__item img {
-    min-height: 180px;
   }
 
   .footer {
@@ -1086,22 +1302,66 @@ ul {
     text-align: center;
     padding: var(--space-md);
   }
+
+  /* Botões menores em mobile */
+  .carousel__btn {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+  .carousel__btn--prev { left: 8px; }
+  .carousel__btn--next { right: 8px; }
+
+  .carousel__caption {
+    padding: 20px 16px 14px;
+    font-size: 0.6rem;
+  }
+
+  /* Lightbox alinhado ao rodapé em mobile (estilo sheet) */
+  .lightbox {
+    padding: var(--space-sm);
+    align-items: flex-end;
+  }
+
+  .lightbox__box {
+    width: 100%;
+  }
+
+  /* Força imagem a ocupar largura total no mobile */
+  .lightbox__img {
+    max-width: 100% !important;
+    max-height: 70vh !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain;
+  }
+
+  .lightbox__close {
+    top: -12px;
+    right: 0;
+  }
+
+  /* Player de vídeo no lightbox em mobile */
+  .lightbox__video {
+    max-height: 60vh;
+  }
+
+  /* Slider de volume oculto em telas pequenas (pouco espaço) */
+  .lp__vol {
+    display: none;
+  }
 }
 
+/* Mobile estreito (≤ 560px) */
 @media (max-width: 560px) {
-  .galeria__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .galeria__item img {
-    min-height: 240px;
-  }
 
   .eventos__grid {
     grid-template-columns: 1fr;
   }
 
-  .sobre__img {
+  /* Proporção ainda mais horizontal para vídeo/imagem da seção Sobre */
+  .sobre__img,
+  video.sobre__img {
     aspect-ratio: 4 / 3;
   }
 }
