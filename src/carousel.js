@@ -158,8 +158,66 @@
     clearInterval(autoTimer);
     clearInterval(progressTimer);
   });
-  el.addEventListener('mouseleave', restartAuto);
+  el.addEventListener('mouseleave', function () {
+    var lb = document.getElementById('lightbox');
+    if (lb && lb.classList.contains('is-hidden')) {
+      restartAuto();
+    }
+  });
 
+  // ── Parar / restaurar carrossel (usado pelo lightbox) ──────────
+
+  /**
+   * Salva a src original de cada vídeo do carrossel.
+   * Chamado uma vez na inicialização.
+   */
+  function saveVideoSources() {
+    slides.forEach(function (s) {
+      var v = s.querySelector('video');
+      if (v && !v._srcSaved) {
+        v._srcSaved = v.getAttribute('src');
+      }
+    });
+  }
+
+  /**
+   * Para autoplay e DESCARREGA todos os vídeos dos slides,
+   * liberando decodificadores e memória GPU.
+   * Chamado ao abrir o lightbox.
+   */
+  function stopCarousel() {
+    clearInterval(autoTimer);
+    autoTimer = null;
+    clearInterval(progressTimer);
+    progressTimer = null;
+    slides.forEach(function (s) {
+      var v = s.querySelector('video');
+      if (v && v._srcSaved) {
+        v.pause();
+        v.removeAttribute('src');
+        v.load();
+      }
+    });
+  }
+
+  /**
+   * Restaura os vídeos do carrossel e reativa autoplay.
+   * Só reproduz o vídeo do slide visível no momento.
+   * Chamado ao fechar o lightbox.
+   */
+  function resumeCarousel() {
+    slides.forEach(function (s, i) {
+      var v = s.querySelector('video');
+      if (v && v._srcSaved) {
+        v.src = v._srcSaved;
+        v.load();
+        if (i === current) {
+          v.play().catch(function () {});
+        }
+      }
+    });
+    restartAuto();
+  }
 
   /* ══════════════════════════════════════════════════════════════
      LIGHTBOX
@@ -394,6 +452,9 @@
   function openLightbox(media, altText, captionText) {
     const { lightbox, lightboxImg, lightboxCaption } = getLightboxEls();
     if (!lightbox || !lightboxImg) return;
+    if (!lightbox.classList.contains('is-hidden')) return;
+
+    stopCarousel();
 
     const isVideo = media instanceof HTMLVideoElement;
 
@@ -402,7 +463,7 @@
     if (existingPlayer) {
       if (existingPlayer._cleanup) existingPlayer._cleanup();
       const oldVid = existingPlayer.querySelector('video');
-      if (oldVid) { oldVid.pause(); oldVid.src = ''; }
+      if (oldVid) { oldVid.pause(); oldVid.removeAttribute('src'); oldVid.load(); }
       existingPlayer.remove();
     }
 
@@ -500,7 +561,7 @@
         vid.addEventListener('loadedmetadata', onMeta, { once: true });
       }
 
-      vid.src = media.src;
+      vid.src = media._srcSaved || media.src;
       vid.load();
 
     } else {
@@ -542,13 +603,15 @@
     if (player) {
       if (player._cleanup) player._cleanup();
       const vid = player.querySelector('video');
-      if (vid) { vid.pause(); vid.src = ''; }
+      if (vid) { vid.pause(); vid.removeAttribute('src'); vid.load(); }
       player.remove();
     }
 
     lightboxImg.src = '';
     lightbox.classList.add('is-hidden');
     document.body.style.overflow = '';
+
+    resumeCarousel();
   }
 
   // ── Click nos slides → lightbox ──────────────────────────────
@@ -590,6 +653,7 @@
      INIT
   ══════════════════════════════════════════════════════════════ */
 
+  saveVideoSources();
   counter.textContent = pad(0) + ' / ' + pad(total - 1);
   restartAuto();
 
