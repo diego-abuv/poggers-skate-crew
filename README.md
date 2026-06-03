@@ -58,43 +58,32 @@ O site funciona como **vitrine do coletivo**: galeria de mídias, agenda de even
 
 ## Estrutura do projeto
 
-```
-├── index.html                  # Página principal
-├── package.json                # Metadados e scripts do projeto
-├── .gitignore
-├── assets/
-│   ├── images/                 # Imagens estáticas
-│   │   ├── banner-pgrs.png     # Background do hero
-│   │   ├── favicon.png         # Ícone da aba
-│   │   ├── ollie-grab.JPG     # Galeria
-│   │   ├── rockslide.jpg      # Galeria
-│   │   └── role_noturno.jpg   # Galeria
-│   └── videos/                 # Vídeos da galeria e background
-│       ├── b2b-ollies.mp4      # Background da seção Sobre
-│       ├── b2b_prefeitura.mp4
-│       ├── b2b_quintal.mp4
-│       ├── b2b_rodoviaria.mp4
-│       ├── biel_prefeitura.mp4
-│       ├── diego_inwHeel_quadrinha.mp4
-│       ├── fifty_muz.mp4
-│       ├── gabtube_tricks.mp4
-│       ├── gap_rodoviaria.mp4
-│       ├── ledge.mp4
-│       ├── marco_popshoveit.mp4
-│       ├── marco_tricks_rodoviaria.mp4
-│       ├── marco_varial.mp4
-│       ├── marco_varial2.mp4
-│       ├── quielemon_tricks.mp4
-│       ├── rod_escadinha_rodoviaria.mp4
-│       ├── rod_flip_corrimao.mp4
-│       ├── rua.mp4
-│       ├── talis_casper.mp4
-│       ├── talis_escada_muz.mp4
-│       ├── vert.mp4
-│       └── vitin_hurricane.mp4
-└── src/
-    ├── carousel.js             # Carrossel + lightbox + player de vídeo
-    └── styles.css              # Todos os estilos do site
+```mermaid
+graph TD
+    A[index.html] --> B[src/styles.css]
+    A --> C[src/carousel.js]
+    C --> D[Dots Navigation]
+    C --> E[Autoplay & Progress]
+    C --> F[Swipe / Touch]
+    C --> G[Lightbox]
+    G --> H[Image Viewer]
+    G --> I[Video Player]
+    I --> J[Controls: Play, Mute, Seek, FS]
+    A --> K[assets/images/]
+    A --> L[assets/videos/]
+    M[package.json] --> N[Vite Dev Server]
+    M --> O[Vite Production Build]
+    N & O --> P[static dist/ output]
+
+    style A fill:#B79639,stroke:#333,stroke-width:2px,color:#0F1010
+    style B fill:#E8E4DA,stroke:#333,stroke-width:2px,color:#0F1010
+    style C fill:#E8E4DA,stroke:#333,stroke-width:2px,color:#0F1010
+    style K fill:#161511,stroke:#4C4C47,stroke-width:2px,color:#E8E4DA
+    style L fill:#161511,stroke:#4C4C47,stroke-width:2px,color:#E8E4DA
+    style M fill:#161511,stroke:#4C4C47,stroke-width:2px,color:#E8E4DA
+    style N fill:#24231E,stroke:#4C4C47,stroke-width:2px,color:#B79639
+    style O fill:#24231E,stroke:#4C4C47,stroke-width:2px,color:#B79639
+    style P fill:#24231E,stroke:#4C4C47,stroke-width:2px,color:#E8E4DA
 ```
 
 ---
