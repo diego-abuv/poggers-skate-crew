@@ -1,0 +1,17 @@
+{
+  "name": "asfalto-livre",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Asfalto Livre — projeto cultural de skate da Poggers Skate Crew. Monte Belo, MG.",
+  "author": "Poggers Skate Crew",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
