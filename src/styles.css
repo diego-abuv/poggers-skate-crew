@@ -214,7 +214,7 @@ ul {
 .hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url('../assets/images/banner-pgrs.png');
+  background-image: url('/assets/images/banner-pgrs.webp');
   background-size: cover;
   background-position: center 30%;
   filter: brightness(0.3);

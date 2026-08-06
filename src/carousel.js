@@ -31,10 +31,13 @@
   }
 
   function goTo(idx) {
+    const prev = current;
     current = ((idx % total) + total) % total;
     track.style.transform = 'translateX(-' + current * 100 + '%)';
     dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
     counter.textContent = pad(current) + ' / ' + pad(total - 1);
+    if (prev !== current) unloadSlideVideo(slides[prev]);
+    loadSlideVideo(slides[current]);
     restartAuto();
   }
 
@@ -108,13 +111,23 @@
     }
   });
 
-  function saveVideoSources() {
-    slides.forEach(function (s) {
-      const v = s.querySelector('video');
-      if (v && !v._srcSaved) {
-        v._srcSaved = v.getAttribute('src');
-      }
-    });
+  function loadSlideVideo(slide) {
+    const v = slide.querySelector('video');
+    if (!v) return;
+    const dataSrc = v.dataset.src;
+    if (dataSrc && v.getAttribute('src') !== dataSrc) {
+      v.src = dataSrc;
+      v.load();
+    }
+    v.play().catch(function () {});
+  }
+
+  function unloadSlideVideo(slide) {
+    const v = slide.querySelector('video');
+    if (!v || !v.dataset.src) return;
+    v.pause();
+    v.removeAttribute('src');
+    v.load();
   }
 
   function stopCarousel() {
@@ -122,27 +135,11 @@
     autoTimer = null;
     clearInterval(progressTimer);
     progressTimer = null;
-    slides.forEach(function (s) {
-      const v = s.querySelector('video');
-      if (v && v._srcSaved) {
-        v.pause();
-        v.removeAttribute('src');
-        v.load();
-      }
-    });
+    unloadSlideVideo(slides[current]);
   }
 
   function resumeCarousel() {
-    slides.forEach(function (s, i) {
-      const v = s.querySelector('video');
-      if (v && v._srcSaved) {
-        v.src = v._srcSaved;
-        v.load();
-        if (i === current) {
-          v.play().catch(function () {});
-        }
-      }
-    });
+    loadSlideVideo(slides[current]);
     restartAuto();
   }
 
@@ -436,7 +433,7 @@
         vid.addEventListener('loadedmetadata', onMeta, { once: true });
       }
 
-      vid.src = media._srcSaved || media.src;
+      vid.src = media.dataset.src || media.src;
       vid.load();
     } else {
       lightboxImg.alt = altText;
@@ -520,7 +517,25 @@
     }
   });
 
-  saveVideoSources();
+  loadSlideVideo(slides[current]);
   counter.textContent = pad(0) + ' / ' + pad(total - 1);
   restartAuto();
+
+  const sobreVideo = document.querySelector('.sobre__img');
+  if (sobreVideo && sobreVideo.dataset.src) {
+    const io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            sobreVideo.src = sobreVideo.dataset.src;
+            sobreVideo.load();
+            sobreVideo.play().catch(function () {});
+            io.disconnect();
+          }
+        });
+      },
+      { rootMargin: '200px' },
+    );
+    io.observe(sobreVideo);
+  }
 })();
