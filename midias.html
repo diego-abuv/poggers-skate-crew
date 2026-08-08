@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Galeria de vídeos e fotos da Poggers Skate Crew. Monte Belo, MG." />
+    <title>Galeria | Poggers Skate Crew</title>
+
+    <meta property="og:title" content="Galeria | Poggers Skate Crew" />
+    <meta property="og:description" content="Vídeos e fotos da Poggers Skate Crew. Cada mídia conta uma queda. Cada queda virou um trick." />
+    <meta property="og:image" content="https://pub-492dfc52bf1c49a8b28debf94323c213.r2.dev/images/banner-pgrs.webp" />
+    <meta property="og:url" content="https://poggers-skate-crew.vercel.app/midias.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="canonical" href="https://poggers-skate-crew.vercel.app/midias.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="180x180" href="/assets/images/favicon-180.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon-180.png" />
+
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/nav.css" />
+    <link rel="stylesheet" href="./src/styles/gallery.css" />
+    <link rel="stylesheet" href="./src/styles/lightbox.css" />
+    <link rel="stylesheet" href="./src/styles/sections.css" />
+    <link rel="stylesheet" href="./src/styles/media.css" />
+  </head>
+
+  <body>
+    <header class="nav" role="banner">
+      <a href="index.html" class="nav__logo" aria-label="Asfalto Livre — início">
+        <span class="nav__logo-color">Poggers</span>SkateCrew
+      </a>
+      <nav aria-label="Navegação principal">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="index.html#sobre">Sobre</a></li>
+          <li><a class="nav__link nav__link--active" href="midias.html">Galeria</a></li>
+          <li><a class="nav__link" href="index.html#eventos">Eventos</a></li>
+          <li><a class="nav__link" href="index.html#apoio">Apoiar</a></li>
+          <li><a class="nav__link" href="index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="gallery-page">
+      <section class="section gallery">
+        <span class="section__label">Acervo</span>
+        <h1 class="section__title">Galeria</h1>
+        <div class="section__divider"></div>
+
+        <div class="gallery__filters" role="tablist" aria-label="Filtrar por tipo">
+          <button class="gallery__filter is-active" data-filter="all" role="tab">Todas</button>
+          <button class="gallery__filter" data-filter="image" role="tab">Fotos</button>
+          <button class="gallery__filter" data-filter="video" role="tab">Vídeos</button>
+        </div>
+
+        <div class="gallery__grid" id="galleryGrid">
+          <div class="gallery__loading">Carregando mídias...</div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a href="index.html" class="nav__logo footer__logo" aria-label="Voltar ao topo">
+        <span class="nav__logo-color">Poggers</span>SkateCrew
+      </a>
+      <p class="footer__copy">© 2025 Asfalto Livre · Poggers Skate Crew · Monte Belo, MG</p>
+      <p class="footer__tagline">Apoie o corre.</p>
+    </footer>
+
+    <div id="lightbox" class="lightbox is-hidden" role="dialog" aria-modal="true" aria-label="Mídia ampliada">
+      <div class="lightbox__box">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Fechar">&#x2715;</button>
+        <img id="lightboxImg" class="lightbox__img" src="" alt="" />
+        <p id="lightboxCaption" class="lightbox__caption"></p>
+      </div>
+    </div>
+
+    <script type="module" src="./src/gallery.js"></script>
+  </body>
+</html>

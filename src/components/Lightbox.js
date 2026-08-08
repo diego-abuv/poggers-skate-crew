@@ -9,12 +9,13 @@ function getLightboxEls() {
   };
 }
 
-export function openLightbox(media, altText, captionText, stopCarousel) {
+export function openLightbox(media, altText, captionText, onOpen, onClose) {
   const { lightbox, lightboxImg, lightboxCaption } = getLightboxEls();
   if (!lightbox || !lightboxImg) return;
   if (!lightbox.classList.contains('is-hidden')) return;
 
-  stopCarousel();
+  if (onOpen) onOpen();
+  lightbox._onClose = onClose || null;
 
   const isVideo = media instanceof HTMLVideoElement;
 
@@ -136,7 +137,7 @@ export function openLightbox(media, altText, captionText, stopCarousel) {
   }
 }
 
-export function closeLightbox(resumeCarousel) {
+export function closeLightbox() {
   const { lightbox, lightboxImg } = getLightboxEls();
   if (!lightbox) return;
 
@@ -156,7 +157,8 @@ export function closeLightbox(resumeCarousel) {
   lightbox.classList.add('is-hidden');
   document.body.style.overflow = '';
 
-  resumeCarousel();
+  if (lightbox._onClose) lightbox._onClose();
+  lightbox._onClose = null;
 }
 
 export function bindLightboxClose(closeFn) {

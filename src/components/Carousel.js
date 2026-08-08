@@ -143,12 +143,13 @@ slides.forEach(function (slide) {
       media.alt || media.getAttribute('aria-label') || '',
       caption ? caption.textContent.trim() : '',
       stopCarousel,
+      resumeCarousel,
     );
   });
 });
 
 bindLightboxClose(function () {
-  closeLightbox(resumeCarousel);
+  closeLightbox();
 });
 
 loadSlideVideo(slides[current]);

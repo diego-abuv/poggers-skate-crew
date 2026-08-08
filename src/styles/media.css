@@ -40,28 +40,15 @@
     aspect-ratio: 3 / 2;
   }
 
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .footer {
     flex-direction: column;
     gap: 12px;
     text-align: center;
     padding: var(--space-md);
-  }
-
-  .carousel__btn {
-    width: 36px;
-    height: 36px;
-    font-size: 0.9rem;
-  }
-  .carousel__btn--prev {
-    left: 8px;
-  }
-  .carousel__btn--next {
-    right: 8px;
-  }
-
-  .carousel__caption {
-    padding: 20px 16px 14px;
-    font-size: 0.6rem;
   }
 
   .lightbox {
@@ -96,6 +83,14 @@
 }
 
 @media (max-width: 560px) {
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__filters {
+    justify-content: center;
+  }
+
   .eventos__grid {
     grid-template-columns: 1fr;
   }

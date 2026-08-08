@@ -41,6 +41,7 @@
   color: var(--color-muted);
   transition: color var(--transition-fast);
 }
-.nav__link:hover {
+.nav__link:hover,
+.nav__link--active {
   color: var(--color-gold);
 }
