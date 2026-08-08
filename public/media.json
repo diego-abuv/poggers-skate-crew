@@ -1,0 +1,169 @@
+{
+  "media": [
+    {
+      "type": "image",
+      "src": "/images/ollie-grab.webp",
+      "alt": "Skatista executando ollie grab na rua",
+      "caption": "Ollie Grab na 45° · Emize Skate Park, Muzambinho"
+    },
+    {
+      "type": "video",
+      "src": "/videos/vitin_hurricane.mp4",
+      "thumb": "/thumbs/vitin_hurricane.webp",
+      "alt": "Skatista executando manobra no corrimão",
+      "caption": "Vitin Hurricane · Emize Skate Park, Muzambinho"
+    },
+    {
+      "type": "image",
+      "src": "/images/rockslide.webp",
+      "alt": "Skatista em rock slide no corrimão",
+      "caption": "Rockslide no corrimão · Emize Skate Park, Muzambinho"
+    },
+    {
+      "type": "video",
+      "src": "/videos/ledge.mp4",
+      "thumb": "/thumbs/ledge.webp",
+      "alt": "Skatista executando manobra no ledge",
+      "caption": "50-50 Grind no caixote · Emize Skate Park, Muzambinho"
+    },
+    {
+      "type": "video",
+      "src": "/videos/gabtube_tricks.mp4",
+      "thumb": "/thumbs/gabtube_tricks.webp",
+      "alt": "Skatista executando manobra de solo",
+      "caption": "Gabtube Tricks · Prefeitura, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/diego_inwHeel_quadrinha.mp4",
+      "thumb": "/thumbs/diego_inwHeel_quadrinha.webp",
+      "alt": "Skatista executando manobra de solo",
+      "caption": "Inward Heelflip · Quadrinha da praça de esportes, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/quielemon_tricks.mp4",
+      "thumb": "/thumbs/quielemon_tricks.webp",
+      "alt": "Skatista executando manobra de solo",
+      "caption": "Quielemon & Diego Tricks · Prefeitura, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/talis_escada_muz.mp4",
+      "thumb": "/thumbs/talis_escada_muz.webp",
+      "alt": "Skatista executando manobra na escada",
+      "caption": "Talis Escada Muz · Emize Skate Park, Muzambinho"
+    },
+    {
+      "type": "image",
+      "src": "/images/role_noturno.webp",
+      "alt": "Role noturno dos skatistas",
+      "caption": "Role Noturno · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/b2b_prefeitura.mp4",
+      "thumb": "/thumbs/b2b_prefeitura.webp",
+      "alt": "Skatistas em b2b na prefeitura",
+      "caption": "B2B na Prefeitura · Prefeitura, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/b2b_quintal.mp4",
+      "thumb": "/thumbs/b2b_quintal.webp",
+      "alt": "Skatistas em b2b no quintal",
+      "caption": "B2B no Quintal · Quintal PGRS, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/b2b_rodoviaria.mp4",
+      "thumb": "/thumbs/b2b_rodoviaria.webp",
+      "alt": "Skatistas em b2b na rodoviária",
+      "caption": "B2B na Rodoviária · Estação Rodoviária, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/biel_prefeitura.mp4",
+      "thumb": "/thumbs/biel_prefeitura.webp",
+      "alt": "Skatista executando manobra na prefeitura",
+      "caption": "Biel na Prefeitura · Prefeitura, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/fifty_muz.mp4",
+      "thumb": "/thumbs/fifty_muz.webp",
+      "alt": "Skatista executando 50-50",
+      "caption": "50-50 no Ledge · Emize Skate Park, Muzambinho"
+    },
+    {
+      "type": "video",
+      "src": "/videos/gap_rodoviaria.mp4",
+      "thumb": "/thumbs/gap_rodoviaria.webp",
+      "alt": "Skatista pulando gap na rodoviária",
+      "caption": "Gap Rodoviária · Estação Rodoviária, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/marco_popshoveit.mp4",
+      "thumb": "/thumbs/marco_popshoveit.webp",
+      "alt": "Skatista executando pop shove it",
+      "caption": "Marco Pop Shove It · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/marco_tricks_rodoviaria.mp4",
+      "thumb": "/thumbs/marco_tricks_rodoviaria.webp",
+      "alt": "Skatista executando manobras na rodoviária",
+      "caption": "Marco Tricks · Estação Rodoviária, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/marco_varial.mp4",
+      "thumb": "/thumbs/marco_varial.webp",
+      "alt": "Skatista executando varial",
+      "caption": "Marco Varial · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/marco_varial2.mp4",
+      "thumb": "/thumbs/marco_varial2.webp",
+      "alt": "Skatista executando varial",
+      "caption": "Marco Varial 2 · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/rod_escadinha_rodoviaria.mp4",
+      "thumb": "/thumbs/rod_escadinha_rodoviaria.webp",
+      "alt": "Skatista descendo escadinha na rodoviária",
+      "caption": "Rod Escadinha · Estação Rodoviária, Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/rod_flip_corrimao.mp4",
+      "thumb": "/thumbs/rod_flip_corrimao.webp",
+      "alt": "Skatista executando flip no corrimão",
+      "caption": "Rod Flip Corrimão · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/rua.mp4",
+      "thumb": "/thumbs/rua.webp",
+      "alt": "Sessão de skate na rua",
+      "caption": "Rua Session · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/talis_casper.mp4",
+      "thumb": "/thumbs/talis_casper.webp",
+      "alt": "Skatista executando casper",
+      "caption": "Talis Casper · Monte Belo"
+    },
+    {
+      "type": "video",
+      "src": "/videos/vert.mp4",
+      "thumb": "/thumbs/vert.webp",
+      "alt": "Skatista na vert",
+      "caption": "Vert no Bowl · Emize Skate Park, Muzambinho"
+    }
+  ]
+}
