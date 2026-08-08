@@ -17,3 +17,6 @@ npm-debug.log*
 # Media (hosted on Cloudflare R2)
 public/assets/thumbs/
 public/assets/videos/
+
+# Wrangler local state
+.wrangler/
